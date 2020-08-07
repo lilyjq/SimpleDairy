@@ -1,4 +1,4 @@
-package com.mercury.diary
+package com.mercury.common.base
 
 import android.app.Activity
 import android.content.Intent
@@ -11,17 +11,17 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
-        initdate();
-        initView();
+        initData()
+        initView()
     }
 
 
-    abstract fun getLayoutRes():Int
-    abstract fun initdate()
+    abstract fun getLayoutRes(): Int
+    abstract fun initData()
     abstract fun initView()
 
-    protected fun start2Activity(clazz:Class<Any>){
-        val intent = Intent(this,clazz)
+    protected fun start2Activity(clazz: Class<Any>) {
+        val intent = Intent(this, clazz)
         startActivity(intent)
     }
 

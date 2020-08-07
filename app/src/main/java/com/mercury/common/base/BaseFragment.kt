@@ -1,4 +1,4 @@
-package com.mercury.diary
+package com.mercury.common.base
 
 import android.content.Context
 import android.os.Bundle

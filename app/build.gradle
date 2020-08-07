@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -20,6 +19,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -28,11 +32,29 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.core:core-ktx:1.2.0-rc01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'jp.wasabeef:glide-transformations:3.0.1'
+    implementation 'com.airbnb.android:lottie:2.7.0'
+//    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation  'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.youth.banner:banner:2.0.12'
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'      //核心必须依赖
+    implementation  'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
 
 }

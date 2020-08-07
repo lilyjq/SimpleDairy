@@ -1,26 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".main.MainActivity"
+        android:background="@color/colorPrimary">
 
-    <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tab"/>
-
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_menu"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                   android:contentDescription="@null"/>
+
+                <ImageView
+                        android:id="@+id/iv_menu_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_search"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@null"/>
+
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toStartOf="@+id/iv_menu_search"
+                        android:layout_toEndOf="@+id/iv_menu"
+                        android:background="@null" />
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+            android:id="@+id/design_navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/item_diary"
+            app:menu="@menu/main_menu" />
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

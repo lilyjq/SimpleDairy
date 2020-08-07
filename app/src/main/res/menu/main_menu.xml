@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/item1"
+        android:icon="@drawable/note1"
+        android:title="@string/app_name"/>
+
+    <item android:id="@+id/item2"
+            android:icon="@drawable/link1"
+            android:title="wc"/>
+
+    <item android:id="@+id/item3"
+            android:icon="@drawable/diary1"
+            android:title="人上人"/>
+
+    <item android:id="@+id/item4"
+            android:icon="@drawable/wearther_cloudy2"
+            android:title="@string/app_name"/>
+
+</menu>
