@@ -69,7 +69,13 @@ abstract  class BaseFragment : Fragment() {
     abstract fun initView(rootView :View?,savedInstanceState: Bundle?)
     abstract fun initData()
 
+    fun showLoadingDialog(){
 
+    }
+
+    fun hideLoadingDialog(){
+
+    }
 
 
 }

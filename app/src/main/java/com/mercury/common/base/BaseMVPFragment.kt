@@ -12,12 +12,11 @@ abstract class BaseMVPFragment<V : IView, P : IPresenter<V>> : BaseFragment(), I
     abstract fun createPresent(): P
     
     
-    fun showLoadingDialog(){
-        
-    }
-    
-    fun hideLoadingDialog(){
-        
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.dettachView()
     }
 
 

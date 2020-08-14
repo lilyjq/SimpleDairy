@@ -43,8 +43,8 @@ class NetUtil private constructor() {
 
     }
 
-    public fun getService(): ApiService {
-        return get().retrofit.create(ApiService::class.java)
+    public fun getRetrofit(): Retrofit {
+        return  retrofit
     }
 
 
