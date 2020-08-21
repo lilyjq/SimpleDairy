@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_home_article.view.*
 
 class HomeArticleAdapter : RecyclerView.Adapter<HomeArticleAdapter.HomeArticleViewHolder>() {
 
-     var list: MutableList<HomeArticleBean> = emptyList<HomeArticleBean>() as MutableList<HomeArticleBean>
+     var list: MutableList<HomeArticleBean> =  mutableListOf()
 
     class HomeArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var timeTv:TextView? = null
@@ -24,7 +24,7 @@ class HomeArticleAdapter : RecyclerView.Adapter<HomeArticleAdapter.HomeArticleVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeArticleViewHolder {
-        var view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_home_article,parent)
+        var view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_home_article,parent,false)
         return HomeArticleViewHolder(view)
     }
 

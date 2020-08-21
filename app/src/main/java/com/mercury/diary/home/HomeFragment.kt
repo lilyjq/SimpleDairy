@@ -2,7 +2,9 @@ package com.mercury.diary.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mercury.common.base.BaseMVPFragment
 import com.mercury.diary.R
 import com.mercury.diary.home.bean.HomeArticleResponse
@@ -12,10 +14,11 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.Banner
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.transformer.AlphaPageTransformer
 import com.youth.banner.transformer.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment  : BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),HomeContract.HomeIView,
+class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),HomeContract.HomeIView,
     OnRefreshLoadMoreListener {
     var isRefreshed = false
     var isLoading = false
@@ -32,15 +35,23 @@ class HomeFragment  : BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),H
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         banner = rootView?.findViewById(R.id.banner)!!
+        presenter.loadBanner()
+        presenter.loadRecycler(nowPage)
+        smart_refresh_layout.setOnRefreshLoadMoreListener(this)
 
     }
 
     override fun initData() {
         super.initData()
-        presenter.loadBanner()
-        presenter.loadRecycler(nowPage)
-        smart_refresh_layout.setOnRefreshLoadMoreListener(this)
 
+
+        /**let 使用it 去访问其公共方法
+        presenter.let {
+            it.loadRecycler()
+        }
+        let 判空 如果不是null的执行{} 操作
+        presenter?.let {  }
+        **/
 
     }
 
@@ -51,7 +62,7 @@ class HomeFragment  : BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),H
 
     override fun loadBannerSuccess(bannerBeans: List<HomeBannerBean>) {
         bannerAdapter = HomeBannerAdapter(bannerBeans)
-            banner.setAdapter(bannerAdapter).addPageTransformer(ZoomOutPageTransformer())
+            banner.setAdapter(bannerAdapter).addPageTransformer(AlphaPageTransformer())
                 .setIndicator(CircleIndicator(context))
                 .setIndicatorGravity(IndicatorConfig.Direction.CENTER)
                 .setIndicatorNormalWidth(18)
@@ -65,8 +76,10 @@ class HomeFragment  : BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),H
 
 
     override fun loadRecyclerSuccess(data: HomeArticleResponse) {
-        articleAdapter.addList(data.dates)
+        articleAdapter.addList(data.datas)
+        recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = articleAdapter
+        articleAdapter.notifyDataSetChanged()
 
     }
 

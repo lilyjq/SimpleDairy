@@ -26,21 +26,18 @@ class NetUtil private constructor() {
 
 
     companion object {
-        private var instances: NetUtil? = null
-            // ?可以为null
-            get() {
-                if (field == null) {
-                    field = NetUtil()
-                }
-                return instances
-            }
+       val instance = Holder.holer
 
 
         @Synchronized
         fun get(): NetUtil {
-            return instances!!
+            return instance
         }
 
+    }
+
+    private object Holder{
+        val holer = NetUtil()
     }
 
     public fun getRetrofit(): Retrofit {

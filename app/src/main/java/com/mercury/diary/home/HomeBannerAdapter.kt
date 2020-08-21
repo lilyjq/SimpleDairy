@@ -21,7 +21,7 @@ class HomeBannerAdapter(datas: List<HomeBannerBean>) :
 
     override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
         context = parent?.context
-        var view:View = LayoutInflater.from(parent?.context).inflate(R.layout.item_banner,parent)
+        var view:View = LayoutInflater.from(parent?.context).inflate(R.layout.item_banner,parent,false)
         return BannerViewHolder(view)
     }
 
