@@ -17,6 +17,7 @@ abstract class BaseMVPFragment<V : IView, P : IPresenter<V>> : BaseFragment(), I
     override fun onDestroy() {
         super.onDestroy()
         presenter.dettachView()
+
     }
 
 

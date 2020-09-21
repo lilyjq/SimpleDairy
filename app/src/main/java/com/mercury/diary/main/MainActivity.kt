@@ -2,9 +2,11 @@ package com.mercury.diary.main
 
 import android.view.Gravity
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import com.mercury.common.base.BaseMVPActivity
 import com.mercury.diary.R
+import com.mercury.test.LifeObserver
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -39,9 +41,13 @@ class MainActivity : BaseMVPActivity<MainContract.MainIView,MainPresenter>() {
 
           }
             true
-
           }
 
+
+        lifecycle.addObserver(LifeObserver())
+        findViewById<TextView>(R.id.tv_top).apply {
+//            text = viewMo
+        }
 
 
 

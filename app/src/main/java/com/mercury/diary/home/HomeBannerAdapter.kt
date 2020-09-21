@@ -33,7 +33,7 @@ class HomeBannerAdapter(datas: List<HomeBannerBean>) :
     ) {
 
         if(holder?.bannerIv != null) {
-            Glide.with(context!!).load(data?.imagePath).apply(RequestOptions().centerCrop())
+            Glide.with(context!!).load(data?.imagePath)/*.apply(RequestOptions())*/
                 .into(holder.bannerIv!!)
         }
         holder?.bannerTv?.text = data?.title

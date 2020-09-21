@@ -18,6 +18,7 @@ open class BasePresenter <V: IView> : IPresenter<V>{
 
     override fun dettachView() {
         weakReference.clear()
+        unbindObserver()
     }
 
     override fun isViewAttached(): Boolean {

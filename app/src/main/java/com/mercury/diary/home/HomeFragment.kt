@@ -22,7 +22,6 @@ class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),
     OnRefreshLoadMoreListener {
     var isRefreshed = false
     var isLoading = false
-    lateinit var banner:Banner<HomeBannerBean,HomeBannerAdapter>
     var nowPage = 0
 
 
@@ -34,10 +33,11 @@ class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),
     }
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
-        banner = rootView?.findViewById(R.id.banner)!!
         presenter.loadBanner()
         presenter.loadRecycler(nowPage)
         smart_refresh_layout.setOnRefreshLoadMoreListener(this)
+        recycler.layoutManager = LinearLayoutManager(context)
+        recycler.adapter = articleAdapter
 
     }
 
@@ -62,12 +62,13 @@ class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),
 
     override fun loadBannerSuccess(bannerBeans: List<HomeBannerBean>) {
         bannerAdapter = HomeBannerAdapter(bannerBeans)
-            banner.setAdapter(bannerAdapter).addPageTransformer(AlphaPageTransformer())
-                .setIndicator(CircleIndicator(context))
-                .setIndicatorGravity(IndicatorConfig.Direction.CENTER)
-                .setIndicatorNormalWidth(18)
-                .setIndicatorSelectedWidth(18)
-                .setScrollTime(800)
+        articleAdapter.adapter =bannerAdapter
+//            banner.setAdapter(bannerAdapter).addPageTransformer(AlphaPageTransformer())
+//                .setIndicator(CircleIndicator(context))
+//                .setIndicatorGravity(IndicatorConfig.Direction.CENTER)
+//                .setIndicatorNormalWidth(18)
+//                .setIndicatorSelectedWidth(18)
+//                .setScrollTime(800)
     }
 
     override fun loadBannerErr() {
@@ -76,9 +77,8 @@ class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),
 
 
     override fun loadRecyclerSuccess(data: HomeArticleResponse) {
-        articleAdapter.addList(data.datas)
-        recycler.layoutManager = LinearLayoutManager(context)
-        recycler.adapter = articleAdapter
+        var isFirstPage = (nowPage == 0)
+        articleAdapter.addList(data.datas,isFirstPage)
         articleAdapter.notifyDataSetChanged()
 
     }
@@ -93,6 +93,7 @@ class HomeFragment (): BaseMVPFragment<HomeContract.HomeIView, HomePresenter>(),
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
+        nowPage = 0
         presenter.loadRecycler(nowPage)
     }
 }
