@@ -28,9 +28,7 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.IProjectView, ProjectPre
         presenter.getProjectType()
     }
 
-//    var adapter:ProjectViewPagerAdapter
     override fun getProjectTypeSuccess(beans: List<ProjectTypeBean>) {
-//        var adapter:ProjectViewPagerAdapter = ProjectViewPagerAdapter(supportFragmentManager, beans)
         view_pager.adapter = ProjectViewPagerAdapter(childFragmentManager, beans)
         tablayout.setupWithViewPager(view_pager)
 
