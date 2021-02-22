@@ -25,6 +25,7 @@ class VFragment : Fragment(){
     }
 
 
+
     lateinit var mutableLiveData: MutableLiveData<Int>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

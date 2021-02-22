@@ -3,6 +3,7 @@ package com.mercury.diary.main
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.TextView
@@ -14,6 +15,7 @@ import com.mercury.test.OneActivity
 import com.mercury.test.VLActivity
 import com.mercury.test.ViewModelTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.logging.Logger
 
 
 class MainActivity : BaseMVPActivity<MainContract.MainIView,MainPresenter>() {
@@ -54,10 +56,28 @@ class MainActivity : BaseMVPActivity<MainContract.MainIView,MainPresenter>() {
         findViewById<TextView>(R.id.tv_top).apply {
 //            text = viewMo
         }
-        val intent = Intent(this, VLActivity::class.java)
-        startActivity(intent)
+//
+//        val intArray = IntArray(5){ it*2 + 1 }
+//
+//        intArray.forEach({
+//            it -> Log.e("eee",it.toString())
+//        })
+//        val intent = Intent(this, VLActivity::class.java)
+//        startActivity(intent)
+
+        val repeatFun: String.(Int) -> String = { times -> this.repeat(times) }
+        val twoParameters: (String, Int) -> String = repeatFun // OK
+
+        fun runTransformation(f: (String, Int) -> String): String {
+            return f("hello", 3)
+        }
+        val result = runTransformation(repeatFun) // OK
+
+        Log.e("eee",result)
 
         }
+
+
 
     fun hideNavigation(){
         drawlayout.closeDrawer(Gravity.LEFT)
