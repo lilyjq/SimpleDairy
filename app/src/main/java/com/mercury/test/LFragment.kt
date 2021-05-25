@@ -2,6 +2,7 @@ package com.mercury.test
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class LFragment  : Fragment(){
         tv_left_subtraction.setOnClickListener(View.OnClickListener { viewModel.clickSub() })
 
         var a = hashMap.put(1,People("11","22"))
+        var handler = Handler()
 
     }
 

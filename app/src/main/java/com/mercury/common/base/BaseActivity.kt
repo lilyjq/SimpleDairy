@@ -25,5 +25,21 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun bundle(callback:(Bundle.() -> Unit)={}):Bundle{
+        val bundle = Bundle()
+        callback(bundle)
+        return  bundle
+    }
+    inline fun <reified T:Activity> Activity.startNewActivity(bundle: Bundle = bundle()){
+        var intent = Intent(this,T::class.java)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    fun tetst(){
+        startNewActivity<BaseActivity>()
+        startNewActivity<BaseActivity>(bundle {putString("eee","eee") })
+    }
+
 
 }
